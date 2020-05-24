@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes                from 'prop-types';
-import { Button, Icon }         from 'antd';
+import { Button }               from 'antd';
+import { CloseOutlined }        from '@ant-design/icons';
 import ItemLabel                from '../ItemLabel/index.js';
 import Link                     from '../Link/index.js';
 
@@ -206,7 +207,7 @@ export default class Filter extends PureComponent {
         return [
             <div key='clear' className='CRUDER_action'>
                 <Link onClick={this.handleClearAll}>
-                    <Icon type='close' />
+                    <CloseOutlined />
                     сбросить фильтры
                 </Link>
             </div>,

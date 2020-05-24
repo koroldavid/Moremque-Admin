@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import PropTypes                from 'prop-types';
-import { Button, Spin, Icon }   from 'antd';
+import { Button, Spin }         from 'antd';
+import { LoadingOutlined }      from '@ant-design/icons';
 import cx                       from 'classnames';
 import { CSSTransition }        from 'react-transition-group';
 
-const Loader = <Icon type='loading' spin />;
+const Loader = <LoadingOutlined spin/>;
 
 export default class SwitcherYesNo extends PureComponent {
     static propTypes = {

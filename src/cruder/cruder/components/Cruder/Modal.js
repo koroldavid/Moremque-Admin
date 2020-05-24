@@ -1,6 +1,7 @@
 import React, { PureComponent }                             from 'react';
 import PropTypes                                            from 'prop-types';
-import { Modal, Form, Button, Icon, message, notification } from 'antd';
+import { Modal, Form, Button, message, notification }       from 'antd';
+import { PlusOutlined }                                     from '@ant-design/icons';
 import dotProp                                              from 'dot-prop';
 import Link                                                 from '../../../components/Link/index.js';
 import ItemLabel                                            from '../../../components/ItemLabel/index.js';
@@ -133,7 +134,7 @@ class ModalType extends PureComponent {
         return (
             <div className='CRUDER_CreateModal'>
                 <Link onClick={this.handleOpen}>
-                    <Icon type='plus' />
+                    <PlusOutlined />
                     {labels.trigger}
                 </Link>
                 <Modal

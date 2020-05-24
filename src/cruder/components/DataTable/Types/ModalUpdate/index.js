@@ -1,8 +1,9 @@
-import React, { PureComponent }                       from 'react';
-import PropTypes                                      from 'prop-types';
-import { Modal, Button, Icon, message, notification } from 'antd';
-import Link                                           from '../../../Link/index.js';
-import ItemLabel                                      from '../../../ItemLabel/index.js';
+import React, { PureComponent }                 from 'react';
+import PropTypes                                from 'prop-types';
+import { Modal, Button, message, notification } from 'antd';
+import { EditOutlined }                         from '@ant-design/icons';
+import Link                                     from '../../../Link/index.js';
+import ItemLabel                                from '../../../ItemLabel/index.js';
 
 const INITIAL_STATE = {
     isOpen    : false,
@@ -105,8 +106,9 @@ class ModalUpdateType extends PureComponent {
 
         return (
             <div className='CRUDER_UpdateModal'>
+
                 <Link onClick={this.handleOpen}>
-                    <Icon type='edit' />
+                    <EditOutlined />
                     {labels.trigger}
                 </Link>
                 <Modal

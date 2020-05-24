@@ -1,7 +1,8 @@
-import React, { PureComponent }         from 'react';
-import PropTypes                        from 'prop-types';
-import { Button, Dropdown, Menu, Icon } from 'antd';
-import ConfirmModal                     from '../../../../cruder/components/Cruder/ConfirmModal.js';
+import React, { PureComponent }   from 'react';
+import PropTypes                  from 'prop-types';
+import { Button, Dropdown, Menu } from 'antd';
+import { DownOutlined }           from '@ant-design/icons';
+import ConfirmModal               from '../../../../cruder/components/Cruder/ConfirmModal.js';
 
 export default class TasksType extends PureComponent {
     static propTypes = {
@@ -81,7 +82,7 @@ export default class TasksType extends PureComponent {
             <Dropdown overlay={menu} trigger={[ 'click' ]}>
                 <Button>
                     {labels.dropdown}
-                    <Icon type='down' />
+                    <DownOutlined />
                 </Button>
             </Dropdown>
             {this.renderModal()}

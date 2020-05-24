@@ -13,12 +13,12 @@ export default class SelectRowType extends PureComponent {
     render() {
         const { schema, item } = this.props;
 
-        const { urlFormatter, iconType } = schema.componentOptions;
+        const { urlFormatter, icon } = schema.componentOptions;
 
         if (!urlFormatter) return '—';
 
         return (
-            <SelectRow type={iconType} url={urlFormatter(item)} />
+            <SelectRow icon={icon} url={urlFormatter(item)} />
         );
     }
 }

@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes                from 'prop-types';
-import { Icon }                 from 'antd';
 
 export default class LinkIcon extends PureComponent {
     static propTypes = {
@@ -9,11 +8,11 @@ export default class LinkIcon extends PureComponent {
     };
 
     render() {
-        const { type, url } = this.props;
+        const { icon, url } = this.props;
 
         return (
-            <a target='_blank' href={url} className='CRUDER_LinkIcon'>
-                <Icon type={type} />
+            <a target='_blank' href={url} className='LinkIcon'>
+                {icon}
             </a>
         );
     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 
-import './Loader.scss';
+import './Loader.less';
 
 
 export default function Loader() {

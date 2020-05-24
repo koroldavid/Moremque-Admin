@@ -1,11 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes                from 'prop-types';
-import { Icon, Spin, Alert }    from 'antd';
+import { Spin, Alert }          from 'antd';
+
 import { TransitionGroup }      from 'react-transition-group';
 import cx                       from 'classnames';
 import { Fade }                 from '../../utils/animations.js';
 import Pager                    from '../Pager/index.js';
-import { Link } from '../../index.js';
+import { Link }                 from '../../index.js';
+import {
+    CaretUpOutlined,
+    CaretDownOutlined,
+    FileAddOutlined
+}                              from '@ant-design/icons';
 
 const ORDERS = {
     'asc'  : 'desc',
@@ -111,7 +117,7 @@ export default class DataTable extends PureComponent {
                         {
                             sortBy !== column.name || orderBy !== 'desc'
                                 ? <Fade>
-                                    <Icon type='caret-up' style={{ fontSize: 8 }} />
+                                    <CaretUpOutlined style={{ fontSize: 8 }} />
                                 </Fade>                                      // eslint-disable-line
                                 : null
                         }
@@ -122,7 +128,7 @@ export default class DataTable extends PureComponent {
                         {
                             sortBy !== column.name || orderBy !== 'asc'
                                 ? <Fade>
-                                    <Icon type='caret-down' style={{ fontSize: 8 }} />
+                                    <CaretDownOutlined style={{ fontSize: 8 }} />
                                 </Fade>                                      // eslint-disable-line
                                 : null
                         }
@@ -317,7 +323,7 @@ export default class DataTable extends PureComponent {
                     onExport
                         ? <div className='CRUDER_export'>
                             <Link onClick={onExport}>
-                                <Icon type='file-add' />
+                                <FileAddOutlined />
                                 экспорт
                             </Link>
                             {

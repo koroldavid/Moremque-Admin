@@ -1,5 +1,4 @@
 import { 
-    Icon,
     Popover,
     Checkbox,
     Input,
@@ -8,15 +7,12 @@ import {
     DatePicker,
     Modal,
     Form,
-    LocaleProvider,
     message,
     notification,
     Spin,
     AutoComplete,
     Select 
 }                        from 'antd';
-
-import ruRU              from 'antd/lib/locale-provider/ru_RU';
 
 import Cruder            from './cruder/components/Cruder.js';
 
@@ -52,7 +48,6 @@ export {
     Menu,
     Form,
     Popover,
-    Icon,
     Input,
     Select,
     Button,
@@ -64,8 +59,5 @@ export {
 
     ItemLabel,
 
-    Spin,
-
-    LocaleProvider,
-    ruRU
+    Spin
 };

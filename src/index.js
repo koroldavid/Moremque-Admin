@@ -1,13 +1,13 @@
 import React              from 'react';
 import ReactDOM           from 'react-dom';
 import App                from './App';
-import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 import {BrowserRouter}    from 'react-router-dom';
 import configureStore     from './store/configureStore.js';
 import { Provider }       from 'react-redux';
 import config 			  from './config';
 
-import './index.scss';
+import './index.less';
 
 const initialState = {};
 export const store = configureStore(initialState);
@@ -19,4 +19,4 @@ ReactDOM.render(
         </Provider>
     </BrowserRouter>, document.getElementById('root'));
 
-serviceWorker.unregister();
+// serviceWorker.unregister();

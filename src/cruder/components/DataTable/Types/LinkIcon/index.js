@@ -11,10 +11,10 @@ export default class LinkIconType extends PureComponent {
     render() {
         const { schema, item } = this.props;
 
-        const { urlFormatter, iconType } = schema.componentOptions;
+        const { urlFormatter, icon } = schema.componentOptions;
 
         if (!urlFormatter) return '—';
 
-        return <LinkIcon type={iconType} url={urlFormatter(item)} />;
+        return <LinkIcon icon={icon} url={urlFormatter(item)} />;
     }
 }

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes                from 'prop-types';
 import { Link }                 from 'react-router-dom';
-import { Icon }                 from 'antd';
 
 export default class SelectRow extends PureComponent {
     static propTypes = {
@@ -10,11 +9,11 @@ export default class SelectRow extends PureComponent {
     };
 
     render() {
-        const { type, url } = this.props;
+        const { icon, url } = this.props;
 
         return (
-            <Link to={url} className='CRUDER_SelectRow'>
-                <Icon type={type} />
+            <Link to={url} className='SelectRow'>
+                {icon}
             </Link>
 
         );

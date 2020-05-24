@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { Menu, Button } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import './styles.scss';
+import './styles.less';
 
 function AppLayout(props) {
     return (

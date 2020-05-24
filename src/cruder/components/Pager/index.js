@@ -1,6 +1,7 @@
-import React, { PureComponent } from 'react';
-import PropTypes                from 'prop-types';
-import { Button }           from 'antd';
+import React, { PureComponent }        from 'react';
+import PropTypes                       from 'prop-types';
+import { Button }                      from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 class Pager extends PureComponent {
     static propTypes = {
@@ -41,13 +42,13 @@ class Pager extends PureComponent {
         return (
             <div className='CRUDER_Pager'>
                 <Button
-                    icon='left'
+                    icon={<LeftOutlined />}
                     disabled={start <= 0}
                     onClick={this.handleClick('prev')}
                 />
                 {this.showInfo()}
                 <Button
-                    icon='right'
+                    icon={<RightOutlined />}
                     disabled={disableNextPages || itemsCount < pageSize}
                     onClick={this.handleClick('next')}
                 />

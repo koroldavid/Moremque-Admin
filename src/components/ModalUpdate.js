@@ -105,7 +105,7 @@ class ModalUpdateType extends PureComponent {
         return (
             <div className='CRUDER_UpdateModal'>
                 <Button onClick={this.handleOpen} type={trigger.type} size={trigger.size}>
-                    <Icon type={trigger.icon} />
+                    {trigger.icon}
                     {trigger.label}
                 </Button>
                 <Modal
