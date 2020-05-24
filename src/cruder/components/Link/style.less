@@ -1,0 +1,14 @@
+.@{uiPrefix}Link {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    line-height: 14px;
+
+    @media (hover:none), (hover:on-demand) {
+        &:hover { 
+            text-decoration: underline;
+        }
+    }
+}

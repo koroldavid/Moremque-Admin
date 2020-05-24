@@ -1,0 +1,22 @@
+.@{uiPrefix}ItemLabel {
+    width: 100%;
+
+    .@{uiPrefix}label {
+        color: @heading-color;
+        margin-bottom: 5px;
+
+        &--required {
+            color: @error-color;
+        }
+    }
+
+    :global {
+        .ant-form-item-control {
+            line-height: normal;
+        }
+
+        .ant-form-explain {
+            margin-top: 4px;
+        }
+    }
+}

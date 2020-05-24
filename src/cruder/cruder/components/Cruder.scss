@@ -1,0 +1,75 @@
+.@{uiPrefix}Cruder {
+    .@{uiPrefix}Filter {
+        margin-bottom: 10px;
+    }
+
+    .@{uiPrefix}CreateModal {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 4px;
+
+        .@{uiPrefix}Link {
+            .anticon {
+                margin-right: 2px;
+            }
+
+            text-decoration-style: dashed;
+            line-height: 14px;
+        }
+    }
+
+    .@{uiPrefix}export .@{uiPrefix}Link {
+        text-decoration-style: dashed;
+    }
+
+    .ant-tabs-bar {
+        margin: 0;
+    }
+}
+
+.ant-modal {
+    top: 50px;
+    padding-bottom: 50px;
+
+    .ant-modal-body {
+        form {
+            >:last-child{
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .ant-modal-footer {
+        padding: 10px 24px;
+    }
+    
+    .ant-form-item-with-help {
+        margin-bottom: 24px;
+    }
+    
+    .ant-form-explain {
+        position: absolute;
+        left: 0;
+        bottom: -14px;
+        min-height: unset;
+    }
+
+    .ant-btn {
+        padding: 0 15px !important;
+
+        &.ant-btn-loading {
+            span {
+                opacity: 0;
+                margin-left: 0;
+            }
+        }
+
+        i {
+            position: absolute;
+            margin-left: 0 !important;
+            top: calc(~'50% - 6px');
+            left: calc(~'50% - 6px');
+        }
+    }
+}

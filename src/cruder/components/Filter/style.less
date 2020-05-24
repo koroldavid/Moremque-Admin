@@ -1,0 +1,89 @@
+.@{uiPrefix}Filter {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 10px 10px 10px;
+    border: @border-width-base @border-style-base @border-color-split;
+    border-radius: @border-radius-base;
+
+
+    .@{uiPrefix}defaultFilter {
+        display: inline-flex;
+        align-items: flex-end;
+        flex-wrap: wrap;
+
+        & > * {
+            margin: 10px 10px 0 0;
+        }
+
+        .@{uiPrefix}ItemLabel {
+            min-width: 170px;
+        }
+
+        .ant-select {
+            width: 170px !important;
+        }
+    }
+
+    .@{uiPrefix}selected {
+        display: inline-flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+
+        & > * {
+            margin: 10px 10px 0 0;
+        }
+
+        .@{uiPrefix}ItemLabel {
+            min-width: 170px;
+        }
+
+        .ant-select {
+            width: 170px !important;
+        }
+    }
+
+    .@{uiPrefix}ItemLabel {
+        width: unset;
+    }
+
+    .@{uiPrefix}fieldSets {
+        .@{uiPrefix}group {
+            float: left;
+        }
+
+        .@{uiPrefix}fieldSet {
+            padding: 10px;
+            width: 220px;
+            margin: 10px 10px 0 0;
+            border: @border-width-base @border-style-base @border-color-split;
+            border-radius: @border-radius-base;
+
+            .@{uiPrefix}ItemLabel {
+                margin-top: 10px;
+            }
+        }
+
+        .@{uiPrefix}fieldSet_title {
+            font-size: 18px;
+        }
+    }
+
+    .@{uiPrefix}extra {
+        & > * {
+            margin-top: 10px;
+        }
+    }
+
+    .@{uiPrefix}action {
+        margin-top: 10px;
+
+        & > .@{uiPrefix}Link {
+            .anticon {
+                margin-right: 2px;
+            }
+
+            text-decoration-style: dashed;
+        }
+    }
+}

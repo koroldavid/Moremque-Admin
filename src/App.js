@@ -1,26 +1,55 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+    Router, Switch, Redirect, Route,
+} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import history from './history';
+import MainLayout from './layout/MainLayout';
+import AppLayout from './layout/AppLayout';
+import AdminControl from './pages/AdminControl';
+import Category from './pages/Category';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function dummyLayout(props) {
+    return props.children;
 }
 
-export default App;
+function AppRoute({ component: Page, layout, ...rest }) {
+    return (
+        <Route
+            {...rest}
+            render={(props) => {
+                const Layout = layout || dummyLayout;
+
+                return (
+                    <MainLayout {...props}>
+                        <Layout {...props}>
+                            <Page {...props} />
+                        </Layout>
+                    </MainLayout>
+                );
+            }}
+        />
+    );
+}
+
+export default function App() {
+    return (
+        <Router history={history}>
+            <Switch>
+                <AppRoute component={AdminControl} layout={AppLayout} path="/control" exact/>
+                <AppRoute component={Category} layout={AppLayout} path="/control/:category" exact/>
+
+                <Redirect from="*" to="/control" />
+            </Switch>
+        </Router>
+    );
+}
+
+AppRoute.propTypes = {
+    component: PropTypes.func.isRequired,
+    layout: PropTypes.func
+};
+
+AppRoute.defaultProps = {
+    layout: null
+};

@@ -1,0 +1,50 @@
+.AppLayout {
+    display: flex;
+
+    nav {
+        width: 200px;
+        min-height: 100vh;
+
+        .ant-menu {
+            height: 100%;
+
+            :first-child {
+                margin-top: 0;
+            }
+        }
+
+        .ant-menu-item {
+            display: flex;
+            align-items: center;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    .ContentContainer {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height:55px;
+
+            border-bottom: 1px solid #f0f0f0;
+
+            button {
+                margin-right: 20px;
+            }
+        }
+
+        .Content {
+            margin: 20px;
+            display: flex;
+        }
+    }
+}
