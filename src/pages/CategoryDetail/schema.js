@@ -1,15 +1,13 @@
-import React                           from 'react';
 import { FilterTypes, DataTableTypes } from '../../cruder';
 import mock                            from '../../utils/mock';
 import defaultParams                   from '../../utils/defaultParams';
-import { RightOutlined }               from '@ant-design/icons';
 
 
 export default function createSchema(api) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
-    const { perPage, sortBy, orderBy } = defaultParams.category;
-    const { create, list } = api.category;
+    const { perPage, sortBy, orderBy } = defaultParams.subCategory;
+    const { create, list } = api.subCategory;
 
     return {
         apiAdapter       : { create, list },
@@ -22,7 +20,7 @@ export default function createSchema(api) {
                     component        : FilterTypes.Input,
                 }
             ],
-            labels : mock.getCreateLabels('category')
+            labels : mock.getCreateLabels('sub-category')
         },
         dataTableOptions : {
             defaultPerPage : perPage,
@@ -45,13 +43,6 @@ export default function createSchema(api) {
                     expandable : true
                 },
                 {
-                    name       : 'subCategory',
-                    label      : 'Sub category',
-                    component  : DataTableTypes.Tags,
-                    width      : 120,
-                    expandable : true
-                },
-                {
                     name             : 'createdAt',
                     label            : 'Created',
                     component        : DataTableTypes.TextDate,
@@ -68,15 +59,6 @@ export default function createSchema(api) {
                     sortable         : true,
                     expandable       : true,
                     componentOptions : { dateFormat, tipFormat }
-                },
-                {
-                    name             : 'selectRow',
-                    component        : DataTableTypes.SelectRow,
-                    width            : 40,
-                    componentOptions : {
-                        icon         : <RightOutlined />,
-                        urlFormatter : category => `/category/${category._id}`,
-                    }
                 },
                 {
                     name             : 'tasks',
@@ -98,15 +80,15 @@ export default function createSchema(api) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : ({item}) => api.category.edit(item),
-                                    labels  : mock.getEditLabels('category')
+                                    handler : api.subCategory.edit,
+                                    labels  : mock.getEditLabels('sub-category')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => api.category.delete(item._id),
-                                confirmationModalLabels : mock.getDeleteLabels('category')
+                                handler   : api.subCategory.delete,
+                                confirmationModalLabels : mock.getDeleteLabels('sub-category')
                             }
                         ]
                     }

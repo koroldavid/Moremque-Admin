@@ -1,6 +1,7 @@
 import ApiClient  from './ApiClient.js';
 
-import CategoryAPI from './Category.js';
+import CategoryAPI    from './Category.js';
+import SubcategoryAPI from './SubCategory.js';
 
 
 export default function ({ apiEndpoint, apiPrefix } = {}) {
@@ -10,6 +11,7 @@ export default function ({ apiEndpoint, apiPrefix } = {}) {
 
     return {
         apiClient     : api,
-        category      : new CategoryAPI({ apiClient: api })
+        category      : new CategoryAPI({ apiClient: api }),
+        subCategory   : new SubcategoryAPI({ apiClient: api })
     };
 }

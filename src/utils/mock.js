@@ -20,6 +20,17 @@ const getDeleteLabels = name => {
     };
 };
 
+const getCreateLabels = name => {
+    return {
+        title          : `Create ${name}`,
+        trigger        : `Create ${name}`,
+        cancelButton   : 'Cancel',
+        submitButton   : 'Create',
+        successMessage : 'Successful',
+        errorMessage   : 'Error caused'
+    };
+};
+
 const dropdownLabel = 'Actions';
 
 const fetchMessage = 'Fetching data';
@@ -38,5 +49,6 @@ export default {
     date: {tipFormat, dateFormat},
     dropdownLabel,
     getEditLabels,
-    getDeleteLabels
+    getDeleteLabels,
+    getCreateLabels
 };

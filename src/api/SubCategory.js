@@ -1,10 +1,10 @@
 import Base from './Base.js';
 
 
-export default class Category extends Base {
+export default class SubCategory extends Base {
     list = async (params) => {
         try {
-            return await this.apiClient.get('/category', params);
+            return await this.apiClient.get('/subCategory', params);
         } catch (error) {
            throw error
         }
@@ -12,7 +12,7 @@ export default class Category extends Base {
 
     create = async ({item: body}) => {
         try {
-            return await this.apiClient.post('/category', body);
+            return await this.apiClient.post('/subCategory', body);
         } catch (error) {
             throw error;
         }
@@ -20,7 +20,7 @@ export default class Category extends Base {
 
     show = async (id) => {
         try {
-            return await this.apiClient.get(`/category/${id}`);
+            return await this.apiClient.get(`/subCategory/${id}`);
         } catch (error) {
             throw error;
         }
@@ -28,7 +28,7 @@ export default class Category extends Base {
 
     edit = async (body) => {
         try {
-            return await this.apiClient.put(`/category/${body._id}`, {...body});
+            return await this.apiClient.put(`/subCategory/${body._id}`, {...body});
         } catch (error) {
             throw error;
         }
@@ -36,7 +36,7 @@ export default class Category extends Base {
 
     delete = async (id) => {
         try {
-            return await this.apiClient.delete(`/category/${id}`);
+            return await this.apiClient.delete(`/subCategory/${id}`);
         } catch (error) {
             throw error;
         }

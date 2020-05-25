@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 import history from './history';
 import MainLayout from './layout/MainLayout';
 import AppLayout from './layout/AppLayout';
-import Category from './pages/Category/Category';
-import Categ from './pages/Cate';
+import Category from './pages/Category';
+import CategoryDetail from './pages/CategoryDetail';
 
 function dummyLayout(props) {
     return props.children;
@@ -37,7 +37,7 @@ export default function App() {
         <Router history={history}>
             <Switch>
                 <AppRoute component={Category} layout={AppLayout} path="/category" exact/>
-                <AppRoute component={Categ} layout={AppLayout} path="/control/:category" exact/>
+                <AppRoute component={CategoryDetail} layout={AppLayout} path="/category/:categoryId" exact/>
 
                 <Redirect from="*" to="/category" />
             </Switch>

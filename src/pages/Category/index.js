@@ -5,15 +5,12 @@ import api           from '../../apiSingleton';
 
 import createSchema  from './schema';
 
-import './Category.less';
-
 export default function Category(props) {
     const { history, location } = props;
-    console.log(props);
     const schema = createSchema(api);
 
     return (
-        <div className='CategoryPage'>
+        <div className='CRUDER_TABLE_PAGE'>
             <Cruder
                 schema   = {schema}
                 location = {location}

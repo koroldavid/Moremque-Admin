@@ -1,27 +1,29 @@
 import React, { PureComponent }                 from 'react';
 import PropTypes                                from 'prop-types';
 import { Modal, Button, message, notification } from 'antd';
-import { EditOutlined }                         from '@ant-design/icons';
-import Link                                     from '../../../Link/index.js';
 import ItemLabel                                from '../../../ItemLabel/index.js';
 
 const INITIAL_STATE = {
-    isOpen    : false,
+    isOpen    : true,
     isLoading : false,
-    error     : {}
+    error     : {},
+    localData : {}
 };
 
 class ModalUpdateType extends PureComponent {
     static propTypes = {
-        item       : PropTypes.object,
-        schema     : PropTypes.object,
-        onInteract : PropTypes.func
+        item    : PropTypes.object,
+        schema  : PropTypes.object,
+        onClose : PropTypes.func
     }
 
     state = INITIAL_STATE
 
+    componentDidMount() {
+        this.handleOpen();
+    }
+
     handleOpen = () => {
-        this.setState({ isOpen: true });
         setTimeout(() => {
             const { item, schema } = this.props;
             const { fields } = schema.componentOptions;
@@ -29,17 +31,15 @@ class ModalUpdateType extends PureComponent {
             fields.forEach(field => this[field.name].setValue(item[field.name]));
 
             this[fields[0].name].setFocus();
-        }, 300);
+        }, 0);
     };
 
     handleClose = success => {
-        this.setState({ ...INITIAL_STATE });
+        this.setState({ isOpen: false });
 
-        if (success && typeof success === 'boolean') {
-            const { onInteract, schema, item } = this.props;
+        const result = success && typeof success === 'boolean';
 
-            onInteract({ item, schema, reload: true });
-        }
+        setTimeout(() => this.props.onClose(result), 300);
     };
 
     handleUpdate = async e => {
@@ -69,11 +69,20 @@ class ModalUpdateType extends PureComponent {
             } else {
                 notification.error({
                     message     : labels.errorMessage,
-                    description : error.message
+                    description : error.message,
+                    duration    : 0
                 });
                 this.setState({ isLoading: false });
             }
         }
+    }
+
+    setLocalData = (obj) => {
+        const name = Object.keys(obj)[0];
+
+        this.state.localData[name] = obj[name];
+
+        this.forceUpdate();
     }
 
     renderFooter = () => {
@@ -100,17 +109,12 @@ class ModalUpdateType extends PureComponent {
     }
 
     render() {
-        const { isOpen, error }         = this.state;
-        const { item, schema }          = this.props;
-        const { labels, fields, width } = schema.componentOptions;
+        const { isOpen, error, localData } = this.state;
+        const { item, schema }             = this.props;
+        const { labels, fields, width }    = schema.componentOptions;
 
         return (
             <div className='CRUDER_UpdateModal'>
-
-                <Link onClick={this.handleOpen}>
-                    <EditOutlined />
-                    {labels.trigger}
-                </Link>
                 <Modal
                     title        = {labels.title}
                     visible      = {isOpen}
@@ -121,26 +125,30 @@ class ModalUpdateType extends PureComponent {
                     width        = {width}
                     destroyOnClose
                 >
-                    <form onSubmit={this.handleUpdate}>
-                        {
-                            fields.map(field => {
-                                const { name, label, component: Component } = field;
+                    {   fields ?
+                        <form onSubmit={this.handleUpdate}>
+                            {
+                                fields.map(field => {
+                                    const { name, label, component: Component } = field;
 
-                                return (
-                                    <ItemLabel label={label} key={name}>
-                                        <Component
-                                            validated
-                                            ref       = {ref => this[field.name] = ref}
-                                            error     = {error[field.name]}
-                                            item      = {item[field.name]}
-                                            schema    = {field}
-                                        />
-                                    </ItemLabel>
-                                );
-                            })
-                        }
-                        <input type='submit' tabIndex='-1' hidden />
-                    </form>
+                                    return (
+                                        <ItemLabel label={label} key={name}>
+                                            <Component
+                                                validated
+                                                ref          = {ref => this[field.name] = ref}
+                                                error        = {error[field.name]}
+                                                item         = {item[field.name]}
+                                                schema       = {field}
+                                                localData    = {localData}
+                                                setLocalData = {this.setLocalData}
+                                            />
+                                        </ItemLabel>
+                                    );
+                                })
+                            }
+                            <input type='submit' tabIndex='-1' hidden />
+                        </form> : null
+                    }
                 </Modal>
             </div>
         );
