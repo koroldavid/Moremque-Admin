@@ -51,7 +51,7 @@ class ModalType extends PureComponent {
                 .filter(field => this[field.name])
                 .forEach(field => data[field.name] = this[field.name].getValue());
 
-            await apiAdapter.create({ item: data });
+            await apiAdapter.create(data);
 
             onQueryChange({}, 'replace');
 
@@ -119,7 +119,7 @@ class ModalType extends PureComponent {
                 key      = 'submit'
                 type     = 'primary'
                 htmlType = 'submit'
-                loading  = {isLoading}
+                disabled = {isLoading}
                 onClick  = {this.handleCreate}
             >
                 {labels.submitButton}

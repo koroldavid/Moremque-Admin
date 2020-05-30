@@ -33,9 +33,10 @@ class DataTableType extends PureComponent {
         });
 
         try {
-            const items = await apiAdapter.list(query);
+            const { data: items, total } = await apiAdapter.list(query);
 
             this.setState({
+                total,
                 items,
                 isLoading : false
             });
@@ -46,7 +47,8 @@ class DataTableType extends PureComponent {
             });
             this.setState({
                 isLoading : false,
-                items     : []
+                items     : [],
+                total: 0
             });
         }
     }
@@ -142,7 +144,7 @@ class DataTableType extends PureComponent {
     }
 
     render() {
-        const { items, isLoading, isExportLoading, error }       = this.state;
+        const { items, total, isLoading, isExportLoading, error }       = this.state;
         const { schema, location, apiAdapter }                   = this.props;
         const { columns, labels, rowClassName, highlightedRows } = schema;
 
@@ -165,7 +167,7 @@ class DataTableType extends PureComponent {
 
                 currentPage  = {parseInt(location.query.page, 10)}
                 pageSize     = {parseInt(location.query.perPage, 10)}
-                itemsCount   = {items.length}
+                itemsCount   = {total}
                 onPageChange = {this.handlePageChange}
 
                 fetchText    = {labels.fetchMessage}

@@ -37,19 +37,19 @@ class Pager extends PureComponent {
 
     render() {
         const { currentPage, itemsCount = 0, pageSize = 0, disableNextPages } = this.props;
-        const start = pageSize * currentPage - pageSize;
+        const itemsBefore = pageSize * currentPage - pageSize;
 
         return (
             <div className='CRUDER_Pager'>
                 <Button
                     icon={<LeftOutlined />}
-                    disabled={start <= 0}
+                    disabled={itemsBefore <= 0}
                     onClick={this.handleClick('prev')}
                 />
                 {this.showInfo()}
                 <Button
                     icon={<RightOutlined />}
-                    disabled={disableNextPages || itemsCount < pageSize}
+                    disabled={disableNextPages || (itemsBefore + pageSize) >= itemsCount}
                     onClick={this.handleClick('next')}
                 />
             </div>

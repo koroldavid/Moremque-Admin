@@ -8,7 +8,9 @@ import createSchema  from './schema';
 
 export default function Category(props) {
     const { history, location } = props;
-    const schema = createSchema(api);
+    const categoryId = location.query.id;
+
+    const schema = createSchema(api, categoryId);
 
     return (
         <div className='CRUDER_TABLE_PAGE'>

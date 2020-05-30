@@ -58,7 +58,7 @@ class ModalUpdateType extends PureComponent {
 
             fields.forEach(field => data[field.name] = this[field.name].getValue());
 
-            await handler({ item: data });
+            await handler(data);
 
             message.success(labels.successMessage);
 
@@ -100,7 +100,7 @@ class ModalUpdateType extends PureComponent {
                 key      = 'submit'
                 type     = 'primary'
                 htmlType = 'submit'
-                loading  = {isLoading}
+                disabled = {isLoading}
                 onClick  = {this.handleUpdate}
             >
                 {labels.submitButton}

@@ -45,13 +45,6 @@ export default function createSchema(api) {
                     expandable : true
                 },
                 {
-                    name       : 'subCategory',
-                    label      : 'Sub category',
-                    component  : DataTableTypes.Tags,
-                    width      : 120,
-                    expandable : true
-                },
-                {
                     name             : 'createdAt',
                     label            : 'Created',
                     component        : DataTableTypes.TextDate,
@@ -62,7 +55,7 @@ export default function createSchema(api) {
                 },
                 {
                     name             : 'updatedAt',
-                    label            : 'Created',
+                    label            : 'Updated',
                     component        : DataTableTypes.TextDate,
                     width            : 130,
                     sortable         : true,
@@ -75,7 +68,7 @@ export default function createSchema(api) {
                     width            : 40,
                     componentOptions : {
                         icon         : <RightOutlined />,
-                        urlFormatter : category => `/category/${category._id}`,
+                        urlFormatter : category => `/category/${category.name}?id=${category._id}`,
                     }
                 },
                 {
@@ -98,7 +91,7 @@ export default function createSchema(api) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : ({item}) => api.category.edit(item),
+                                    handler : api.category.edit,
                                     labels  : mock.getEditLabels('category')
                                 }
                             },

@@ -4,7 +4,7 @@ import Filter                   from './Cruder/Filter.js';
 import DataTable                from './Cruder/DataTable.js';
 import Modal                    from './Cruder/Modal.js';
 
-const QUERY = [ 'perPage', 'sortBy', 'orderBy' ];
+const QUERY = [ 'perPage', 'sortBy', 'orderBy', 'id' ];
 
 class Cruder extends PureComponent {
     static propTypes = {

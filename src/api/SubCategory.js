@@ -4,13 +4,19 @@ import Base from './Base.js';
 export default class SubCategory extends Base {
     list = async (params) => {
         try {
-            return await this.apiClient.get('/subCategory', params);
+            const queryParams = {
+                ...params,
+                offset : params.perPage * (params.page - 1),
+                limit  : params.perPage,
+            }
+
+            return await this.apiClient.get('/subCategory', queryParams);
         } catch (error) {
            throw error
         }
     }
 
-    create = async ({item: body}) => {
+    create = async (body) => {
         try {
             return await this.apiClient.post('/subCategory', body);
         } catch (error) {

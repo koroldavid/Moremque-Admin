@@ -2,15 +2,21 @@ import Base from './Base.js';
 
 
 export default class Category extends Base {
-    list = async (params) => {
+    list = async (params = {}) => {
         try {
-            return await this.apiClient.get('/category', params);
+            const queryParams = {
+                ...params,
+                offset : params.perPage * (params.page - 1),
+                limit  : params.perPage
+            }
+
+            return await this.apiClient.get('/category', queryParams);
         } catch (error) {
            throw error
         }
     }
 
-    create = async ({item: body}) => {
+    create = async (body) => {
         try {
             return await this.apiClient.post('/category', body);
         } catch (error) {

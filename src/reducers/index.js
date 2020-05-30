@@ -1,9 +1,7 @@
 import { combineReducers }  from 'redux';
 
-import recipes              from './recipes';
-import category             from './category';
+import secondary from './secondary';
 
 export default combineReducers({
-    recipes,
-    category
+    secondary
 });

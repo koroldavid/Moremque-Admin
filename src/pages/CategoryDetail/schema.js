@@ -3,14 +3,17 @@ import mock                            from '../../utils/mock';
 import defaultParams                   from '../../utils/defaultParams';
 
 
-export default function createSchema(api) {
+export default function createSchema(api, id) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
     const { perPage, sortBy, orderBy } = defaultParams.subCategory;
     const { create, list } = api.subCategory;
 
     return {
-        apiAdapter       : { create, list },
+        apiAdapter       : {
+            create: (item) => create({ ...item, categoryId: id }),
+            list 
+        },
         createModalOptions : {
             width  : 440,
             fields : [
@@ -87,7 +90,7 @@ export default function createSchema(api) {
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : api.subCategory.delete,
+                                handler   : ({item}) => api.subCategory.delete(item._id),
                                 confirmationModalLabels : mock.getDeleteLabels('sub-category')
                             }
                         ]
