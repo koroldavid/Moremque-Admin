@@ -1,18 +1,16 @@
 import React         from 'react';
 import PropTypes     from 'prop-types';
-import { connect }   from 'react-redux';
 import { Cruder }    from '../../cruder';
 import api           from '../../apiSingleton';
-import * as actionst from '../../actions/subCategory';
 
 import createSchema  from './schema';
 
 
-function CategoryDetails(props) {
-    const { history, location, create, update, deleting } = props;
-    const categoryId = location.query.id;
+export default function Products(props) {
+    const { history, location } = props;
+    const subCategoryId = location.query.id;
 
-    const schema = createSchema(api, { create, update, deleting }, categoryId);
+    const schema = createSchema(api, subCategoryId);
 
     return (
         <div className='CRUDER_TABLE_PAGE'>
@@ -25,12 +23,7 @@ function CategoryDetails(props) {
     );
 }
 
-CategoryDetails.propTypes = {
+Products.propTypes = {
     location : PropTypes.object,
     history  : PropTypes.object,
-    create   : PropTypes.func,
-    update   : PropTypes.func,
-    deleting : PropTypes.func
 };
-
-export default connect(null, actionst)(CategoryDetails);

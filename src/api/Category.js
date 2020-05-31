@@ -32,7 +32,7 @@ export default class Category extends Base {
         }
     }
 
-    edit = async (body) => {
+    update = async (body) => {
         try {
             return await this.apiClient.put(`/category/${body._id}`, {...body});
         } catch (error) {

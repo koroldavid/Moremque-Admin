@@ -3,6 +3,8 @@ import ApiClient  from './ApiClient.js';
 import CategoryAPI    from './Category.js';
 import SubcategoryAPI from './SubCategory.js';
 import SecondaryAPI   from './Secondary.js';
+import ProductAPI     from './Product.js';
+
 
 
 export default function ({ apiEndpoint, apiPrefix } = {}) {
@@ -14,6 +16,7 @@ export default function ({ apiEndpoint, apiPrefix } = {}) {
         apiClient     : api,
         category      : new CategoryAPI({ apiClient: api }),
         subCategory   : new SubcategoryAPI({ apiClient: api }),
-        secondary     : new SecondaryAPI({ apiClient: api })
+        secondary     : new SecondaryAPI({ apiClient: api }),
+        product       : new ProductAPI({ apiClient: api })
     };
 }

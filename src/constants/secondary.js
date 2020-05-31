@@ -1,5 +1,0 @@
-const GET_STRUCTURE = 'GET_STRUCTURE';
-
-export {
-    GET_STRUCTURE
-};

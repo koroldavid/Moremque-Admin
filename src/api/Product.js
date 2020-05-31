@@ -1,16 +1,16 @@
 import Base from './Base.js';
 
 
-export default class SubCategory extends Base {
-    list = async (params) => {
+export default class Product extends Base {
+    list = async (params = {}) => {
         try {
             const queryParams = {
                 ...params,
                 offset : params.perPage * (params.page - 1),
-                limit  : params.perPage,
+                limit  : params.perPage
             }
 
-            return await this.apiClient.get('/subCategory', queryParams);
+            return await this.apiClient.get('/product', queryParams);
         } catch (error) {
            throw error
         }
@@ -18,7 +18,7 @@ export default class SubCategory extends Base {
 
     create = async (body) => {
         try {
-            return await this.apiClient.post('/subCategory', body);
+            return await this.apiClient.post('/product', body);
         } catch (error) {
             throw error;
         }
@@ -26,7 +26,7 @@ export default class SubCategory extends Base {
 
     show = async (id) => {
         try {
-            return await this.apiClient.get(`/subCategory/${id}`);
+            return await this.apiClient.get(`/product/${id}`);
         } catch (error) {
             throw error;
         }
@@ -34,7 +34,7 @@ export default class SubCategory extends Base {
 
     update = async (body) => {
         try {
-            return await this.apiClient.put(`/subCategory/${body._id}`, {...body});
+            return await this.apiClient.put(`/product/${body._id}`, {...body});
         } catch (error) {
             throw error;
         }
@@ -42,7 +42,7 @@ export default class SubCategory extends Base {
 
     delete = async (id) => {
         try {
-            return await this.apiClient.delete(`/subCategory/${id}`);
+            return await this.apiClient.delete(`/product/${id}`);
         } catch (error) {
             throw error;
         }
