@@ -31,6 +31,19 @@ export default function createSchema(api, actions) {
             defaultSortBy  : sortBy,
             defaultOrderBy : orderBy,
             labels         : { fetchMessage, emptyMessage, errorMessage },
+            defaultTab     : 'active',
+            tabs           : [
+                {
+                    name  : 'active',
+                    label : 'Active',
+                    value : { paranoid: 'false' }
+                },
+                {
+                    name  : 'deleted',
+                    label : 'Deleted',
+                    value : { paranoid: 'true' }
+                },
+            ],
             columns        : [
                 {
                     name       : 'name',
