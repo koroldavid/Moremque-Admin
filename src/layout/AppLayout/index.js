@@ -1,12 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
-import { Menu, Button } from 'antd';
-import { SettingOutlined, SkinOutlined, AppleOutlined } from '@ant-design/icons';
-import Loader from '../../components/Loader';
-import { loadStructure } from '../../actions/secondary';
+import React                             from 'react';
+import PropTypes                         from 'prop-types';
+import { connect }                       from 'react-redux';
+import { Link, withRouter }              from 'react-router-dom';
+import { Menu, Button }                  from 'antd';
+import { SettingOutlined, SkinOutlined } from '@ant-design/icons';
+import Loader                            from '../../components/Loader';
+import { loadStructure }                 from '../../actions/secondary';
+import { injecQuery }                    from '../../utils/urlFormater';
+
 import './styles.less';
-import { connect } from 'react-redux';
+
 
 class AppLayout extends React.PureComponent {
     state = {
@@ -34,7 +37,7 @@ class AppLayout extends React.PureComponent {
                     mode="inline"
                 > 
                     <Menu.Item icon={<SettingOutlined />}>
-                        <Link to='/control'>
+                        <Link to={injecQuery('/category')}>
                             Controll Panel
                         </Link>
                     </Menu.Item>
@@ -44,13 +47,13 @@ class AppLayout extends React.PureComponent {
                                 <Menu.SubMenu 
                                     icon={<SkinOutlined />}
                                     title={subItem.name}
-                                    key={subItem.id}
+                                    key={subItem._id}
                                 >
                                     {
                                         subItem.subStructure.map(menuItem => {
                                             return (
-                                                <Menu.Item icon={<AppleOutlined />} key={menuItem.id}>
-                                                    <Link to={`product/${menuItem.name}?id=${menuItem.id}`}>
+                                                <Menu.Item key={menuItem._id}>
+                                                    <Link to={injecQuery(`/product/${menuItem.name}`, `id=${menuItem._id}`)}>
                                                         {menuItem.name}
                                                     </Link>
                                                 </Menu.Item>

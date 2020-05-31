@@ -1,4 +1,4 @@
-import * as constants from '../constants/secondary';
+import * as constants from '../constants';
 import api            from '../apiSingleton';
 
 export function loadStructure () {

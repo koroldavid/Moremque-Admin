@@ -3,16 +3,15 @@ import mock                            from '../../utils/mock';
 import defaultParams                   from '../../utils/defaultParams';
 
 
-export default function createSchema(api, id) {
+export default function createSchema(api, actions, categoryId) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
     const { perPage, sortBy, orderBy } = defaultParams.subCategory;
-    const { create, list } = api.subCategory;
 
     return {
-        apiAdapter       : {
-            create: (item) => create({ ...item, categoryId: id }),
-            list 
+        apiAdapter : {
+            create : (item) => actions.create({ ...item, categoryId }),
+            list   : api.subCategory.list
         },
         createModalOptions : {
             width  : 440,
@@ -44,6 +43,30 @@ export default function createSchema(api, id) {
                     component  : DataTableTypes.Text,
                     width      : 120,
                     expandable : true
+                },
+                {
+                    name             : 'isActive',
+                    label            : 'Is active',
+                    component        : DataTableTypes.SwitcherYesNo,
+                    width            : 120,
+                    expandable       : true,
+                    componentOptions : {
+                        handler : ({item, value}) => api.subCategory.update({ ...item, isActive: value }),
+                        options : [
+                            {
+                                label: 'Yes',
+                                option: true
+                            },
+                            {
+                                label: 'No',
+                                option: false
+                            }
+                        ],
+                        labels : {
+                            successMessage : 'Success',
+                            errorMessage   : 'Error caused'
+                        }
+                    }
                 },
                 {
                     name             : 'createdAt',
@@ -83,14 +106,14 @@ export default function createSchema(api, id) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : api.subCategory.edit,
+                                    handler : actions.update,
                                     labels  : mock.getEditLabels('sub-category')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => api.subCategory.delete(item._id),
+                                handler   : ({item}) => actions.deleting(item._id, categoryId),
                                 confirmationModalLabels : mock.getDeleteLabels('sub-category')
                             }
                         ]

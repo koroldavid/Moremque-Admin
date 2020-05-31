@@ -1,19 +1,18 @@
-import React                           from 'react';
 import { FilterTypes, DataTableTypes } from '../../cruder';
 import mock                            from '../../utils/mock';
 import defaultParams                   from '../../utils/defaultParams';
-import { RightOutlined }               from '@ant-design/icons';
 
 
-export default function createSchema(api, actions) {
+export default function createSchema(api, subCategoryId) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
-    const { perPage, sortBy, orderBy } = defaultParams.category;
+    const { perPage, sortBy, orderBy } = defaultParams.product;
+    const { create, list } = api.product;
 
     return {
         apiAdapter : {
-            create : actions.create,
-            list   : api.category.list 
+            create : (item) => create({ ...item, subCategoryId }),
+            list
         },
         createModalOptions : {
             width  : 440,
@@ -24,7 +23,7 @@ export default function createSchema(api, actions) {
                     component        : FilterTypes.Input,
                 }
             ],
-            labels : mock.getCreateLabels('category')
+            labels : mock.getCreateLabels('product')
         },
         dataTableOptions : {
             defaultPerPage : perPage,
@@ -53,7 +52,7 @@ export default function createSchema(api, actions) {
                     width            : 120,
                     expandable       : true,
                     componentOptions : {
-                        handler : ({item, value}) => api.category.update({ ...item, isActive: value }),
+                        handler : ({item, value}) => api.product.update({ ...item, isActive: value }),
                         options : [
                             {
                                 label: 'Yes',
@@ -81,21 +80,12 @@ export default function createSchema(api, actions) {
                 },
                 {
                     name             : 'updatedAt',
-                    label            : 'Updated',
+                    label            : 'Created',
                     component        : DataTableTypes.TextDate,
                     width            : 130,
                     sortable         : true,
                     expandable       : true,
                     componentOptions : { dateFormat, tipFormat }
-                },
-                {
-                    name             : 'selectRow',
-                    component        : DataTableTypes.SelectRow,
-                    width            : 40,
-                    componentOptions : {
-                        icon         : <RightOutlined />,
-                        urlFormatter : category => `/category/${category.name}?id=${category._id}`,
-                    }
                 },
                 {
                     name             : 'tasks',
@@ -117,15 +107,15 @@ export default function createSchema(api, actions) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : actions.update,
-                                    labels  : mock.getEditLabels('category')
+                                    handler : api.product.update,
+                                    labels  : mock.getEditLabels('product')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => actions.deleting(item._id),
-                                confirmationModalLabels : mock.getDeleteLabels('category')
+                                handler   : ({item}) => api.product.delete(item._id, subCategoryId),
+                                confirmationModalLabels : mock.getDeleteLabels('product')
                             }
                         ]
                     }
