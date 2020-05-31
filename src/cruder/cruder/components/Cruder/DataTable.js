@@ -106,7 +106,7 @@ class DataTableType extends PureComponent {
         const { location, schema } = this.props;
         const { tabs }             = schema;
         const { query }            = location;
-
+        
         if (!tabs) return 'count';
 
         const active = tabs.find(tab =>
