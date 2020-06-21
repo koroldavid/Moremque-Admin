@@ -27,7 +27,10 @@ class AppLayout extends React.PureComponent {
     }
 
     renderNavigation() {
-        const { structure } = this.props;
+        const { structure, location } = this.props;
+        const { pathname, query } = location;
+        const { id } = query;
+        const path = `${pathname}${id ? id : ''}`
 
         return(
             <nav>
@@ -35,8 +38,12 @@ class AppLayout extends React.PureComponent {
                     openKeys={this.state.openSubmenu}
                     onOpenChange={this.onOpenSubmenu}
                     mode="inline"
+                    selectedKeys={path}
                 > 
-                    <Menu.Item icon={<SettingOutlined />}>
+                    <Menu.Item 
+                        icon={<SettingOutlined />}
+                        key={'/category'}
+                    >
                         <Link to={injecQuery('/category')}>
                             Controll Panel
                         </Link>
@@ -51,9 +58,11 @@ class AppLayout extends React.PureComponent {
                                 >
                                     {
                                         subItem.subStructure.map(menuItem => {
+                                            const keyPrefix = `/product/${subItem.name}_${menuItem.name}`
+
                                             return (
-                                                <Menu.Item key={menuItem._id}>
-                                                    <Link to={injecQuery(`/product/${menuItem.name}`, `id=${menuItem._id}`)}>
+                                                <Menu.Item key={`${keyPrefix}${menuItem._id}`}>
+                                                    <Link to={injecQuery(keyPrefix, `id=${menuItem._id}`)}>
                                                         {menuItem.name}
                                                     </Link>
                                                 </Menu.Item>
