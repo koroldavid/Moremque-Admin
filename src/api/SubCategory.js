@@ -39,12 +39,4 @@ export default class SubCategory extends Base {
             throw error;
         }
     }
-
-    delete = async (id) => {
-        try {
-            return await this.apiClient.delete(`/subCategory/${id}`);
-        } catch (error) {
-            throw error;
-        }
-    }
 }

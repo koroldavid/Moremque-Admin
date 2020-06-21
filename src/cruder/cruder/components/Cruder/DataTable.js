@@ -63,10 +63,14 @@ class DataTableType extends PureComponent {
     }
 
     handleInteract = async ({ reload }) => {
-        const { location } = this.props;
+        const { location, onInteract } = this.props;
 
         if (reload) {
             await this.handleLoad(location.query);
+        }
+        if (onInteract) {
+            console.log('interact');
+            onInteract();
         }
     }
 

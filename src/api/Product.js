@@ -39,12 +39,4 @@ export default class Product extends Base {
             throw error;
         }
     }
-
-    delete = async (id) => {
-        try {
-            return await this.apiClient.delete(`/product/${id}`);
-        } catch (error) {
-            throw error;
-        }
-    }
 }

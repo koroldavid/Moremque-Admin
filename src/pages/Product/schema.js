@@ -7,7 +7,7 @@ export default function createSchema(api, subCategoryId) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
     const { perPage, sortBy, orderBy } = defaultParams.product;
-    const { create, list } = api.product;
+    const { create, list, update } = api.product;
 
     return {
         apiAdapter : {
@@ -65,7 +65,7 @@ export default function createSchema(api, subCategoryId) {
                     width            : 120,
                     expandable       : true,
                     componentOptions : {
-                        handler : ({item, value}) => api.product.update({ ...item, isActive: value }),
+                        handler : ({item, value}) => update({ ...item, isActive: value }),
                         options : [
                             {
                                 label: 'Yes',
@@ -120,15 +120,23 @@ export default function createSchema(api, subCategoryId) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : api.product.update,
+                                    handler : update,
                                     labels  : mock.getEditLabels('product')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => api.product.delete(item._id, subCategoryId),
-                                confirmationModalLabels : mock.getDeleteLabels('product')
+                                handler   : (item) => update({ ...item, paranoid: true }),
+                                confirmationModalLabels : mock.getDeleteLabels('product'),
+                                visible   : (item) => !item.paranoid
+                            },
+                            {
+                                name      : 'restore',
+                                label     : 'Restore',
+                                handler   : (item) => update({ ...item, paranoid: false }),
+                                confirmationModalLabels : mock.getRestoreLabels('category'),
+                                visible   : (item) => item.paranoid
                             }
                         ]
                     }

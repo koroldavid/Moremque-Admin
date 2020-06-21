@@ -36,9 +36,9 @@ class ModalType extends PureComponent {
     handleCreate = async e => {
         if (e) e.preventDefault();
 
-        const { isLoading }                 = this.state;
-        const { apiAdapter, onQueryChange } = this.props;
-        const { fields, labels }            = this.props.schema;
+        const { isLoading }                             = this.state;
+        const { apiAdapter, onQueryChange, onInteract } = this.props;
+        const { fields, labels }                        = this.props.schema;
 
         if (isLoading) return;
 
@@ -52,6 +52,7 @@ class ModalType extends PureComponent {
                 .forEach(field => data[field.name] = this[field.name].getValue());
 
             await apiAdapter.create(data);
+            if (onInteract) onInteract();
 
             onQueryChange({}, 'replace');
 

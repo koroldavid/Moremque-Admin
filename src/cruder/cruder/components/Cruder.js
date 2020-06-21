@@ -59,8 +59,8 @@ class Cruder extends PureComponent {
     }
 
     renderFilter() {
-        const { location, schema }          = this.props;
-        const { filterOptions, apiAdapter } = schema;
+        const { location, schema, onInteract } = this.props;
+        const { filterOptions, apiAdapter }    = schema;
 
         if (!filterOptions) return null;
 
@@ -69,13 +69,13 @@ class Cruder extends PureComponent {
             location      = {location}
             apiAdapter    = {apiAdapter}
             onQueryChange = {this.handleQueryChange}
-            onInteract    = {this.handleInteract}
+            onInteract    = {onInteract}
         />;
     }
 
     renderDataTable() {
-        const { location, schema }             = this.props;
-        const { dataTableOptions, apiAdapter } =  schema;
+        const { location, schema, onInteract } = this.props;
+        const { dataTableOptions, apiAdapter } = schema;
 
         if (!dataTableOptions) return null;
 
@@ -84,12 +84,12 @@ class Cruder extends PureComponent {
             location      = {location}
             apiAdapter    = {apiAdapter}
             onQueryChange = {this.handleQueryChange}
-            onInteract    = {this.handleInteract}
+            onInteract    = {onInteract}
         />;
     }
 
     renderModal() {
-        const { apiAdapter, createModalOptions } =  this.props.schema;
+        const { apiAdapter, createModalOptions } = this.props.schema;
 
         if (!createModalOptions) return null;
 
@@ -98,6 +98,7 @@ class Cruder extends PureComponent {
                 schema        = {createModalOptions}
                 apiAdapter    = {apiAdapter}
                 onQueryChange = {this.handleQueryChange}
+                onInteract    = {this.props.onInteract}
             />
         );
     }

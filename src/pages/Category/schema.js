@@ -5,16 +5,14 @@ import defaultParams                   from '../../utils/defaultParams';
 import { RightOutlined }               from '@ant-design/icons';
 
 
-export default function createSchema(api, actions) {
+export default function createSchema(api) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
     const { perPage, sortBy, orderBy } = defaultParams.category;
+    const { create, list, update } = api.category;
 
     return {
-        apiAdapter : {
-            create : actions.create,
-            list   : api.category.list 
-        },
+        apiAdapter : { create, list },
         createModalOptions : {
             width  : 440,
             fields : [
@@ -66,7 +64,7 @@ export default function createSchema(api, actions) {
                     width            : 120,
                     expandable       : true,
                     componentOptions : {
-                        handler : ({item, value}) => api.category.update({ ...item, isActive: value }),
+                        handler : ({item, value}) => update({ ...item, isActive: value }),
                         options : [
                             {
                                 label: 'Yes',
@@ -130,15 +128,23 @@ export default function createSchema(api, actions) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : actions.update,
+                                    handler : (item) => update(item),
                                     labels  : mock.getEditLabels('category')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => actions.deleting(item._id),
-                                confirmationModalLabels : mock.getDeleteLabels('category')
+                                handler   : (item) => update({ ...item, paranoid: true }),
+                                confirmationModalLabels : mock.getDeleteLabels('category'),
+                                visible   : (item) => !item.paranoid
+                            },
+                            {
+                                name      : 'restore',
+                                label     : 'Restore',
+                                handler   : (item) => update({ ...item, paranoid: false }),
+                                confirmationModalLabels : mock.getRestoreLabels('category'),
+                                visible   : (item) => item.paranoid
                             }
                         ]
                     }

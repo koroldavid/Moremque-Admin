@@ -1,35 +1,38 @@
-const getEditLabels = (name) => {
-    return {
-        title          : `Edit ${name}`,
-        trigger        : 'Edit',
-        cancelButton   : 'Cancel',
-        submitButton   : 'Edit',
-        successMessage : 'Successful',
-        errorMessage   : 'Error occurred'
-    };
-};
+const getEditLabels = (name) => ({
+    title          : `Edit ${name}`,
+    trigger        : 'Edit',
+    cancelButton   : 'Cancel',
+    submitButton   : 'Edit',
+    successMessage : 'Successful',
+    errorMessage   : 'Error occurred' 
+});
 
-const getDeleteLabels = name => {
-    return {
-        title          : `Delete ${name}`,
-        text           : `Are you sure you want to delete the ${name}?`,
-        cancelButton   : 'Cancel',
-        submitButton   : 'Delete',
-        successMessage : 'Successful',
-        errorMessage   : 'Error caused'
-    };
-};
+const getDeleteLabels = name => ({
+    title          : `Delete ${name}`,
+    text           : `Are you sure you want to delete the ${name}?`,
+    cancelButton   : 'Cancel',
+    submitButton   : 'Delete',
+    successMessage : 'Successful',
+    errorMessage   : 'Error caused' 
+});
 
-const getCreateLabels = name => {
-    return {
-        title          : `Create ${name}`,
-        trigger        : `Create ${name}`,
-        cancelButton   : 'Cancel',
-        submitButton   : 'Create',
-        successMessage : 'Successful',
-        errorMessage   : 'Error caused'
-    };
-};
+const getCreateLabels = name => ({
+    title          : `Create ${name}`,
+    trigger        : `Create ${name}`,
+    cancelButton   : 'Cancel',
+    submitButton   : 'Create',
+    successMessage : 'Successful',
+    errorMessage   : 'Error caused' 
+});
+
+const getRestoreLabels = name => ({
+    title          : `Restore ${name}`,
+    text           : `Are you sure you want to restore the ${name}?`,
+    cancelButton   : 'Cancel',
+    submitButton   : 'Restore',
+    successMessage : 'Successful',
+    errorMessage   : 'Error caused'
+});
 
 const dropdownLabel = 'Actions';
 
@@ -50,5 +53,6 @@ export default {
     dropdownLabel,
     getEditLabels,
     getDeleteLabels,
-    getCreateLabels
+    getCreateLabels,
+    getRestoreLabels
 };
