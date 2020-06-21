@@ -3,15 +3,16 @@ import mock                            from '../../utils/mock';
 import defaultParams                   from '../../utils/defaultParams';
 
 
-export default function createSchema(api, actions, categoryId) {
+export default function createSchema(api, categoryId) {
     const { fetchMessage, emptyMessage, errorMessage, date } = mock;
     const { tipFormat, dateFormat } = date;
     const { perPage, sortBy, orderBy } = defaultParams.subCategory;
+    const { create, list, update } = api.subCategory;
 
     return {
         apiAdapter : {
-            create : (item) => actions.create({ ...item, categoryId }),
-            list   : api.subCategory.list
+            create : (item) => create({ ...item, categoryId }),
+            list
         },
         createModalOptions : {
             width  : 440,
@@ -119,15 +120,23 @@ export default function createSchema(api, actions, categoryId) {
                                             component : FilterTypes.Input
                                         }
                                     ],
-                                    handler : actions.update,
+                                    handler : update,
                                     labels  : mock.getEditLabels('sub-category')
                                 }
                             },
                             {
                                 name      : 'delete',
                                 label     : 'Delete',
-                                handler   : ({item}) => actions.deleting(item._id, categoryId),
-                                confirmationModalLabels : mock.getDeleteLabels('sub-category')
+                                handler   : (item) => update({  ...item, paranoid: true }),
+                                confirmationModalLabels : mock.getDeleteLabels('sub-category'),
+                                visible   : (item) => !item.paranoid
+                            },
+                            {
+                                name      : 'restore',
+                                label     : 'Restore',
+                                handler   : (item) => update({ ...item, paranoid: false }),
+                                confirmationModalLabels : mock.getRestoreLabels('category'),
+                                visible   : (item) => item.paranoid
                             }
                         ]
                     }

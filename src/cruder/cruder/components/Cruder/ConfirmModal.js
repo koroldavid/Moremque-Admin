@@ -46,7 +46,7 @@ class ConfirmModal extends PureComponent {
         this.setState({ isLoading: true });
 
         try {
-            await handler({ item: itemData, schema: confirmData });
+            await handler(itemData);
             this.setState({ isOpen: false });
             setTimeout(() => {
                 message.success(confirmationModalLabels.successMessage);

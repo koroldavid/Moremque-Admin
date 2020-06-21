@@ -45,7 +45,7 @@ class AppLayout extends React.PureComponent {
                         key={'/category'}
                     >
                         <Link to={injecQuery('/category')}>
-                            Controll Panel
+                            Category
                         </Link>
                     </Menu.Item>
                     {
